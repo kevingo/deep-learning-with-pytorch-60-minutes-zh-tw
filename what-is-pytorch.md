@@ -219,24 +219,36 @@ print(x[:, 1])
 tensor([-0.0261,  1.4154,  0.5129, -0.5751, -0.7201])
 ```
 
-Resizing: If you want to resize/reshape tensor, you can use torch.view:
+Resizing: If you want to resize/reshape tensor, you can use `torch.view`:
 
+```python
 x = torch.randn(4, 4)
 y = x.view(16)
 z = x.view(-1, 8)  # the size -1 is inferred from other dimensions
 print(x.size(), y.size(), z.size())
+```
+
 輸出：
 
+```python
 torch.Size([4, 4]) torch.Size([16]) torch.Size([2, 8])
+```
+
 If you have a one element tensor, use .item() to get the value as a Python number
 
+```python
 x = torch.randn(1)
 print(x)
 print(x.item())
+```
+
 輸出：
 
+```python
 tensor([-1.0562])
 -1.056159257888794
+```
+
 Read later:
 
 100+ Tensor operations, including transposing, indexing, slicing, mathematical operations, linear algebra, random numbers, etc., are described here.
@@ -246,54 +258,82 @@ Converting a Torch Tensor to a NumPy array and vice versa is a breeze.
 The Torch Tensor and NumPy array will share their underlying memory locations (if the Torch Tensor is on CPU), and changing one will change the other.
 
 Converting a Torch Tensor to a NumPy Array
+
+```python
 a = torch.ones(5)
 print(a)
+```
+
 輸出：
 
+```python
 tensor([1., 1., 1., 1., 1.])
 b = a.numpy()
 print(b)
+```
+
 輸出：
 
+```python
 [1. 1. 1. 1. 1.]
+```
+
 See how the numpy array changed in value.
 
+```python
 a.add_(1)
 print(a)
 print(b)
+```
+
 輸出：
 
+```python
 tensor([2., 2., 2., 2., 2.])
 [2. 2. 2. 2. 2.]
+```
+
 Converting NumPy Array to Torch Tensor
 See how changing the np array changed the Torch Tensor automatically
 
+```python
 import numpy as np
 a = np.ones(5)
 b = torch.from_numpy(a)
 np.add(a, 1, out=a)
 print(a)
 print(b)
+```
+
 輸出：
 
+```python
 [2. 2. 2. 2. 2.]
 tensor([2., 2., 2., 2., 2.], dtype=torch.float64)
+```
+
 All the Tensors on the CPU except a CharTensor support converting to NumPy and back.
 
 CUDA Tensors
 Tensors can be moved onto any device using the .to method.
 
-# let us run this cell only if CUDA is available
-# We will use ``torch.device`` objects to move tensors in and out of GPU
+let us run this cell only if CUDA is available
+We will use ``torch.device`` objects to move tensors in and out of GPU
 
 if torch.cuda.is_available():
+
+```python
     device = torch.device("cuda")          # a CUDA device object
     y = torch.ones_like(x, device=device)  # directly create a tensor on GPU
     x = x.to(device)                       # or just use strings ``.to("cuda")``
     z = x + y
     print(z)
     print(z.to("cpu", torch.double))       # ``.to`` can also change dtype together!
+```
+
 輸出：
 
+```python
 tensor([-0.0562], device='cuda:0')
 tensor([-0.0562], dtype=torch.float64)
+```
