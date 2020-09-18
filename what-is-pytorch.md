@@ -219,7 +219,7 @@ print(x[:, 1])
 tensor([-0.0261,  1.4154,  0.5129, -0.5751, -0.7201])
 ```
 
-Resizing: If you want to resize/reshape tensor, you can use `torch.view`:
+調整大小：如果你想要 tensor 的形狀或大小，你可以使用 `torch.view`：
 
 ```python
 x = torch.randn(4, 4)
@@ -234,7 +234,7 @@ print(x.size(), y.size(), z.size())
 torch.Size([4, 4]) torch.Size([16]) torch.Size([2, 8])
 ```
 
-If you have a one element tensor, use .item() to get the value as a Python number
+如果你的 tensor 只有一個元素，可以使用 `.item()` 來取得它的值：
 
 ```python
 x = torch.randn(1)
@@ -314,15 +314,14 @@ tensor([2., 2., 2., 2., 2.], dtype=torch.float64)
 
 All the Tensors on the CPU except a CharTensor support converting to NumPy and back.
 
-CUDA Tensors
-Tensors can be moved onto any device using the .to method.
+## CUDA Tensors
 
-let us run this cell only if CUDA is available
-We will use ``torch.device`` objects to move tensors in and out of GPU
-
-if torch.cuda.is_available():
+Tensor 可以透過 `.to` 方法移動到任何的計算裝置上。
 
 ```python
+# let us run this cell only if CUDA is available
+# We will use ``torch.device`` objects to move tensors in and out of GPU
+if torch.cuda.is_available():
     device = torch.device("cuda")          # a CUDA device object
     y = torch.ones_like(x, device=device)  # directly create a tensor on GPU
     x = x.to(device)                       # or just use strings ``.to("cuda")``
