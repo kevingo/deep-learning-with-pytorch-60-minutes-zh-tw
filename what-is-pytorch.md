@@ -249,15 +249,17 @@ tensor([-1.0562])
 -1.056159257888794
 ```
 
-Read later:
+稍後閱讀：
 
-100+ Tensor operations, including transposing, indexing, slicing, mathematical operations, linear algebra, random numbers, etc., are described here.
-NumPy Bridge
-Converting a Torch Tensor to a NumPy array and vice versa is a breeze.
+超過 100 個以上關於 tensor 的操作，包含了轉置、索引、切片、數學操作、線性代數、隨機數等，可以參考[這份文件](https://pytorch.org/docs/torch)。
 
-The Torch Tensor and NumPy array will share their underlying memory locations (if the Torch Tensor is on CPU), and changing one will change the other.
+## NumPy 的橋樑
 
-Converting a Torch Tensor to a NumPy Array
+將 torch 的 tensor 專換為 numpy 陣列是輕而易舉的，反之亦然。
+
+torch tensor 和 numpy 陣列會共享記憶體位置 (當 torch tensor 是在 CPU 時)，當你改變其中一個內容，另一個也會被改變。
+
+### 將 torch tensor 轉換為 numpy 陣列
 
 ```python
 a = torch.ones(5)
@@ -278,7 +280,7 @@ print(b)
 [1. 1. 1. 1. 1.]
 ```
 
-See how the numpy array changed in value.
+查看 numpy 陣列的值是如何變化的。
 
 ```python
 a.add_(1)
@@ -293,8 +295,9 @@ tensor([2., 2., 2., 2., 2.])
 [2. 2. 2. 2. 2.]
 ```
 
-Converting NumPy Array to Torch Tensor
-See how changing the np array changed the Torch Tensor automatically
+## 轉換 numpy array 到 torch tensor
+
+來看看修改 numpy 陣列是如何自動改變 torch tensor：
 
 ```python
 import numpy as np
@@ -312,7 +315,7 @@ print(b)
 tensor([2., 2., 2., 2., 2.], dtype=torch.float64)
 ```
 
-All the Tensors on the CPU except a CharTensor support converting to NumPy and back.
+除了 CharTensor 之外，所有運行在 CPU 的 tensor 都支援轉換成 numpy 陣列
 
 ## CUDA Tensors
 
